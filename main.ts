@@ -1,4 +1,10 @@
-scene.onOverlapTile(SpriteKind.Player, sprites.builtin.forestTiles0, function (sprite, location) {
+scene.onOverlapTile(SpriteKind.Player, assets.tile`miMosaico15`, function (sprite, location) {
+    // Borra el hongo en la ubicación exacta que tocaste
+    tiles.setTileAt(location, assets.tile`transparency16`)
+    // Te suma 1 punto al marcador de monedas
+    info.changeScoreBy(1)
+})
+scene.onOverlapTile(SpriteKind.Player, sprites.builtin.forestTiles0, function (sprite2, location2) {
     game.gameOver(false)
     game.setGameOverEffect(false, effects.melt)
 })
@@ -7,7 +13,6 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
         pibble_13.vy = -150
     }
 })
-let lista = 0
 let pibble_13: Sprite = null
 scene.setBackgroundColor(9)
 pibble_13 = sprites.create(img`
@@ -46,6 +51,3 @@ controller.moveSprite(pibble_13, 100, 0)
 tiles.setCurrentTilemap(tilemap`nivel3`)
 pibble_13.ay = 200
 scene.cameraFollowSprite(pibble_13)
-for (let valor of lista) {
-    lista = 0
-}
